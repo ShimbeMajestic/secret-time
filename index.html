@@ -84,7 +84,6 @@
             0% { transform: translateY(50px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
-
         /* Falling hearts effect */
         .heart-fall {
             position: absolute;
@@ -97,7 +96,6 @@
             0% { transform: translateY(0); opacity: 1; }
             100% { transform: translateY(100vh); opacity: 0; }
         }
-
         /* Media queries for responsiveness */
         @media screen and (max-width: 768px) {
             h1 {
@@ -112,7 +110,6 @@
                 font-size: 1.3rem;
             }
         }
-
         @media screen and (max-width: 480px) {
             h1 {
                 font-size: 2.8rem;
@@ -131,36 +128,32 @@
 <body>
     <h1>My Love, <span class="heart">❤️</span></h1>
     <p>
-        My Love,
-I’m so lucky to have you in my life. Every day with you is a gift, and I’m grateful for your love. You inspire me to be my best, and I’m thankful you never gave up on us."    </p>
+        My Love, I’m so lucky to have you in my life. Every day with you is a gift, and I’m grateful for your love. You inspire me to be my best, and I’m thankful you never gave up on us.
+    </p>
     <button class="btn" onclick="showMessage()">Click for a Surprise</button>
     <p class="hidden-message" id="hiddenMessage">
-        "You’ve shown me a love I didn’t think was possible. May God guide you and shower you with His blessings always." 💖
+        "You’ve shown me a love I didn’t think was possible. May God guide us to forever." 
     </p>
-    <button class="btn" onclick="openPicture()">See a Beautiful Surprise</button>
 
     <script>
         function showMessage() {
             document.getElementById("hiddenMessage").style.display = "block";
         }
 
-        function openPicture() {
-            window.open("her-picture.html", "_blank");
+        // Falling hearts effect
+        function createFallingHearts() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-fall';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // Random duration
+            document.body.appendChild(heart);
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
         }
 
-        function createHearts() {
-            for (let i = 0; i < 20; i++) {
-                let heart = document.createElement("div");
-                heart.className = "heart-fall";
-                heart.innerHTML = "❤️";
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-                heart.style.animationDelay = Math.random() * 2 + "s"; // Delayed heart falling
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
-            }
-        }
-        setInterval(createHearts, 1000);
+        setInterval(createFallingHearts, 1000); // Create hearts every second
     </script>
 </body>
 </html>
